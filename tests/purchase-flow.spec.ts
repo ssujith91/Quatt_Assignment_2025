@@ -3,7 +3,7 @@ import { PageManager } from '../page-objects/pageManager'
 
 
 test('Purchase flow',async()=>{
-    const browser = await chromium.launch({ headless: false })
+    const browser = await chromium.launch({ headless: true })
     const page = await browser.newPage()
     try
     {
