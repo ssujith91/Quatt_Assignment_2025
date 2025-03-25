@@ -8,6 +8,7 @@ test('Purchase flow',async()=>{
     try
     {
         await page.goto('/')
+        await page.waitForLoadState('domcontentloaded')
         const pageManager = new PageManager(page)
         page.on('dialog', async (dialog) => {
             expect(dialog.message()).toContain('Product added')
