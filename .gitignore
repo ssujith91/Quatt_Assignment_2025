@@ -1,6 +1,7 @@
 
 # Playwright
 node_modules/
+token.json
 /test-results/
 /playwright-report/
 /blob-report/
