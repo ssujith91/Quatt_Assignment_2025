@@ -22,7 +22,9 @@ export class HomePage
     async chooseProduct(product:string)
     {
         //await this.page.getByText(`${product}`).click()
-        //const productsListContainer = this.page.locator('#tbodyid .card-title')
+        //const productsListContainer = this.page.locator('#tbodyid')
+        
+        await this.page.waitForTimeout(2000)
         const productsList = this.page.locator('#tbodyid .card-title a')
         await this.page.waitForLoadState('domcontentloaded')
         const productsCount = await productsList.count()
@@ -32,7 +34,7 @@ export class HomePage
                 console.log(productText+',')
                 if ( productText == product) 
                 {
-                    await productsList.nth(i).click();
+                    await productsList.nth(i).click()
                     return; 
                 }
             }
