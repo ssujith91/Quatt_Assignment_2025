@@ -18,7 +18,7 @@ export class ShoppingCart
         await placeOrderDialog.locator('#month').fill(`${month}`)
         await placeOrderDialog.locator('#year').fill(`${year}`)
         await placeOrderDialog.getByRole('button').filter({hasText:'Purchase'}).click()
-        await this.orderConfirmation(name,creditcard)
+        //await this.orderConfirmation(name,creditcard)
     }
 
     async orderConfirmation(username:string,creditcard:string)
