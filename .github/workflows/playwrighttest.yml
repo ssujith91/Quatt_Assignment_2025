@@ -40,7 +40,7 @@ jobs:
 
       # Optional: Upload Playwright HTML report as an artifact 
       - name: Upload Playwright HTML Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: playwright-report
           path: playwright-report/
