@@ -6,12 +6,6 @@ export class HomePage
         this.page = page
     }
 
-    async selectProduct(productName:string)
-    {
-        await this.chooseProduct(productName)
-        await this.addProductToCart()
-    }
-
     async chooseCategory(category:string)
     {
         const categoryContainer = await this.page.locator('.col-lg-3 .list-group')
@@ -19,13 +13,14 @@ export class HomePage
         await categoryContainer.locator('.list-group-item').filter({hasText:`${categoryText}`}).click()
     }
 
-    async chooseProduct(product:string)
+    async selectProduct(product:string)
     {
         //await this.page.getByText(`${product}`).click()
         //const productsListContainer = this.page.locator('#tbodyid')
         
-        await this.page.waitForTimeout(2000)
+        //await this.page.waitForTimeout(2000)
         const productsList = this.page.locator('#tbodyid .card-title a')
+        await productsList.first().waitFor({ state: 'visible' })
         await this.page.waitForLoadState('domcontentloaded')
         const productsCount = await productsList.count()
         for (let i = 0; i < productsCount; i++) 
@@ -42,8 +37,9 @@ export class HomePage
             if(await nextPage.isVisible())
             {
                 await nextPage.click()
+                await this.page.waitForTimeout(1000)
+                await this.selectProduct(product)
             }
-            await this.chooseProduct(product)
             throw new Error(`The product "${product}" could not be found`)
     }
 
