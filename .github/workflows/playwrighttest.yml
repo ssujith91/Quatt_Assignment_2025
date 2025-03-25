@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   test:
@@ -25,22 +26,19 @@ jobs:
 
       # Step 3: Install dependencies
       - name: Install Dependencies
-        run: |
-          npm install
+        run: npm install
 
       # Step 4: Install Playwright Browsers
       - name: Install Playwright Browsers
-        run: |
-          npx playwright install
+        run: npx playwright install
 
       # Step 5: Run the Playwright tests
       - name: Run Playwright Tests
-        run: |
-          npx playwright test --reporter=html
+        run: npx playwright test --reporter=html
 
       # Optional: Upload Playwright HTML report as an artifact 
       - name: Upload Playwright HTML Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: playwright-report
           path: playwright-report/
